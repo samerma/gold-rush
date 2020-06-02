@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="style.css">
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+            data-auto-replace-svg="nest"></script>
+    <title>Gold Rush</title>
+</head>
+
+<body>
+
+    <div id='game-container'>
+        <div id="board-container"></div>
+        <div id="score-container"></div>
+    </div>
+
+    <script id="board-template"
+            type="text/x-handlebars-template">
+            {{#each matrix}} 
+             <div class="row">
+                {{#each this}}
+                <div class="col {{this}}"> 
+                        {{#if (isCoin this)}}
+                            <i class="fas fa-coins"></i>
+                        {{/if}}
+                        {{#if (isPlayer1 this)}}
+                            <i class="p1 fas fa-dragon"></i>
+                        {{/if}} 
+                        {{#if (isPlayer2 this)}}
+                            <i class="p2 fas fa-dragon fa-flip-horizontal"></i>
+                        {{/if}}
+                </div>
+                {{/each}}
+             </div>
+            {{/each}}
+    </script>
+    <script id="score-template"
+            type="text/x-handlebars-template">
+            <div class="player1-score">{{this.[1]}}</div>
+            <button class="start-btn">start</button>
+            <div class="player2-score">{{this.[2]}}</div>
+    </script>
+    <script id="game-over-template"
+            type="text/x-handlebars-template">
+            <div class="game-over">
+                <h1 >Game Over</h1>
+                <h2 >Player {{this}} Wins</h2>
+                <button class="new-game-btn">New Game</button>
+            </div>
+           
+    </script>
+
+    <script src="node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="./Matrix.js"></script>
+    <script src="./GoldRush.js"></script>
+    <script src="./Renderer.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
